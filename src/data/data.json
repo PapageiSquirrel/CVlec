@@ -1,0 +1,115 @@
+{
+	"Me": {
+		"id" : 0,
+		"nickname" : "PaPaGei",
+		"realname" : "Maël Rabasse",
+		"password" : "",
+		"age" : 30,
+		"adresse" : "18 rue Paul Lopin",
+		"fixe" : null,
+		"tel" : "0647866194",
+		"photo" : null,
+		"profiles" : [
+			{
+				"id" : 0,
+				"title" : "Développeur Web Full-Stack",
+				"mode" : "SPLIT",
+				"sections" : [
+					{
+						"id": 0,
+						"title" : "Compétences",
+						"style" : {},
+						"order" : 0,
+						"topics" : [
+							{
+								"id" : 0,
+								"title" : "Javascript",
+								"date" : null,
+								"type": "NA",
+								"style" : {
+									"background-color": "#F98602",
+									"color": "#713E04"
+								},
+								"order" : 0,
+								"note" : 5,
+								"details" : [
+							   		{ "sub_title" : "Frameworks Front-End :", "description": "VueJs, AngularJs, ReactJS", "learn_more": "See more on my github : lien" },
+							    	{ "sub_title" : "Frameworks Back-End :", "description": "NodeJS, ExpressJS", "learn_more": "See more on my github : lien" }
+						    	]
+							},
+							{
+								"id" : 1,
+								"title" : "C#",
+								"date" : null,
+								"type" : "NA",
+								"style" : {
+									"background-color": "#1B4FFA"
+								},
+								"order" : 1,
+								"note" : 4,
+								"details" : [
+									{ "sub_title" : "Frameworks Front-End :", "description": "Silverlight", "learn_more": "See more on my github : lien" },
+							    	{ "sub_title" : "Frameworks Back-End :", "description": "REST", "learn_more": "See more on my github : lien" }
+								]
+							},
+							{
+								"id" : 2,
+								"title" : "Python",
+								"date" : null,
+								"type" : "NA",
+								"style" : {
+									"background-color": "#139908"
+								},
+								"order" : 2,
+								"note" : 2,
+								"details" : []
+							}
+						]
+					},
+					{
+						"id": 1,
+						"title" : "Expériences Professionelles",
+						"style" : {},
+						"order" : 0,
+						"topics" : [
+							{
+								"id" : 0,
+								"title" : "Auto-Entreprise",
+								"date" : "12/12/2017",
+								"type" : "NA",
+								"style" : {},
+								"order" : 0,
+								"details" : []
+							}
+						]
+					},
+					{
+						"id": 2,
+						"title" : "",
+						"style" : {},
+						"order" : 0,
+						"topics" : []
+					},
+					{
+						"id": 3,
+						"title" : "",
+						"style" : {},
+						"order" : 0,
+						"topics" : []
+					}
+				]
+			},
+			{
+				"id" : 1,
+				"title" : "Développeur .NET",
+				"mode" : "PILE",
+				"sections" : []
+			},
+			{
+				"id" : 2,
+				"title" : "Barman",
+				"sections" : []
+			}
+		]
+	}
+}
