@@ -9,17 +9,25 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+import Vue from 'vue'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import UserInfo from './components/UserInfo.vue'
 import UserProfiles from './components/UserProfiles.vue'
 import ProfileOverview from './components/ProfileOverview.vue'
 
-import Data from './data/data.json'
+import Data from './data/user.json'
+
+library.add(faLink)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 export default {
   name: 'app',
   components: {
-    //HelloWorld,
     UserInfo,
     UserProfiles,
     ProfileOverview

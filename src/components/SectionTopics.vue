@@ -1,7 +1,7 @@
 <template>
 	<div id="topic" v-bind:style="topic.style">
 		<div class="flex-container">
-			<div id="title-flex"><h4>{{topic.title}}</h4></div>
+			<div id="title-flex"><h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" icon="link" /> {{topic.title}}</h4></div>
 			<div v-if="isNoted" id="bar-flex" class="bordered progress-bar">
 				<div class="progress" v-bind:style="{ width: noteWidth, 'background-color': noteBG }"></div>
 			</div>
