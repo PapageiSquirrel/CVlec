@@ -7,28 +7,54 @@
 			</div>
 		</div>
 		<ol>
-			<topic-details v-for="item in topic.details" v-bind:detail="item" v-bind:key="item.sub_title" />
+			<topic-details v-for="(item, index) in topic.details" v-bind:detail="item" v-bind:key="index" />
 		</ol>
 	</div>
 </template>
 
 <script>
 import TopicDetails from './TopicDetails.vue'
+import stLinks from '../data/links.json'
 
 export default {
 	name: 'SectionTopics',
 	components: {
 		TopicDetails
 	},
+	props: {
+		sid : Number,
+		topic : Object
+	},
 	data: function() {
 		return {
+			links: stLinks,
 			isNoted : this.topic.note ? true : false,
 			noteWidth : this.topic.note / 5 *100 + '%',
 			noteBG : this.topic.style['background-color'] ? this.topic.style['background-color'] : '#FFF'
 		}
 	},
-	props: {
-		topic : Object
+	computed: {
+		isLinked: function() {
+			var branch = { section: this.sid, topic: this.topic.id };
+			var link_found = this.links.find(function(l) {
+				return l.init.section == branch.section && l.init.topic == branch.topic;
+			});
+			if (link_found) {
+				return true;
+			}
+			return false;
+		},
+	},
+	methods: {
+		InitLink: function() {
+			var branch = { section: this.sid, topic: this.topic.id };
+			var link_found = this.links.find(function(l) {
+				return l.init.section == branch.section && l.init.topic == branch.topic;
+			});
+			if (link_found) {
+				// TODO : ModeChange to highlight the link clicked
+			}
+		}
 	}
 }
 </script>
@@ -43,8 +69,8 @@ export default {
 }
 .progress {
 	display: block;
-  	height: 100%;
-  	position: relative;
+	height: 100%;
+	position: relative;
 	overflow: hidden;
 }
 
@@ -60,7 +86,8 @@ export default {
 }
 .flex-container > #title-flex {
 	flex-grow: 1;
-	text-align: right;
+	text-align: center;
+	margin: 0px;
 }
 .flex-container > #bar-flex {
 	flex-grow: 2;
@@ -84,7 +111,7 @@ export default {
 
 /* global */
 h4 {
-
+	margin: 15px;
 }
 ol {
 	list-style-type: none;

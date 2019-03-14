@@ -1,0 +1,160 @@
+{
+	"Me": {
+		"id" : 0,
+		"nickname" : "PaPaGei",
+		"realname" : "Maël Rabasse",
+		"password" : "",
+		"age" : 30,
+		"adresse" : "18 rue Paul Lopin",
+		"fixe" : null,
+		"tel" : "0647866194",
+		"photo" : null,
+		"profiles" : [
+			{
+				"id" : 0,
+				"title" : "Développeur Web Full-Stack",
+				"mode" : "SPLIT",
+				"sections" : [
+					{
+						"id": 0,
+						"title" : "Compétences",
+						"style" : {},
+						"order" : 0,
+						"topics" : [
+							{
+								"id" : 0,
+								"title" : "Javascript",
+								"sub_title": null,
+								"date" : null,
+								"type": "NA",
+								"style" : {
+									"background-color": "#F98602",
+									"color": "#713E04"
+								},
+								"order" : 0,
+								"note" : 5,
+								"details" : [
+							   		{ "sub_title" : "Frameworks Front-End :", "description": "VueJs, AngularJs, ReactJS", "learn_more": "See more on my github : lien" },
+							    	{ "sub_title" : "Frameworks Back-End :", "description": "NodeJS, ExpressJS", "learn_more": "See more on my github : lien" }
+						    	]
+							},
+							{
+								"id" : 1,
+								"title" : "C#",
+								"sub_title": null,
+								"date" : null,
+								"type" : "NA",
+								"style" : {
+									"background-color": "#1B4FFA"
+								},
+								"order" : 1,
+								"note" : 4,
+								"details" : [
+									{ "sub_title" : "Frameworks Front-End :", "description": "Silverlight", "learn_more": "See more on my github : lien" },
+							    	{ "sub_title" : "Frameworks Back-End :", "description": "REST", "learn_more": "See more on my github : lien" }
+								]
+							},
+							{
+								"id" : 2,
+								"title" : "Python",
+								"sub_title": null,
+								"date" : null,
+								"type" : "NA",
+								"style" : {
+									"background-color": "#139908"
+								},
+								"order" : 2,
+								"note" : 2,
+								"details" : []
+							}
+						]
+					},
+					{
+						"id": 1,
+						"title" : "Expériences Professionelles",
+						"style" : {},
+						"order" : 0,
+						"topics" : [
+							{
+								"id" : 0,
+								"title" : "Auto-Entreprise",
+								"sub_title": "Développeur Web Freelance",
+								"sidenote" : "depuis le 12/12/2017",
+								"type" : "NA",
+								"style" : {},
+								"order" : 0,
+								"details" : [
+									{ "sub_title" : "", "description": "Refonte d’un logiciel de gestion de patientèle pour un groupe médical polynésien.", "tags": ["Python", "Django", "JQuery"], 
+										"learn_more": "Gestion de rdv d'agenda et styles correspondants (google calendar), ajustements de la structure des données, corrections de bugs, ...", "link": "Python" },
+									{ "sub_title" : "", "description": "Développement d’un jeu mobile multiplateforme.", "tags": ["Javascript", "NodeJS", "CreateJS", "Android"], 
+										"learn_more": "Demo ...", "link": "Javascript" }
+								]
+							},
+							{
+								"id" : 1,
+								"title" : "Phase de création d'Auto-Entreprise",
+								"sub_title": "",
+								"sidenote" : "de 2014 à 2017",
+								"type" : "NA",
+								"style" : {},
+								"order" : 0,
+								"details" : [
+									{ "sub_title" : "Formation en auto-didacte : ", "description": "Frameworks Javascript (NodeJS, ExpressJS, VueJS, ReactJS, CreateJS), BDD \/ NoSQL (MongoDB, postgre), Android IDE", "tags": ["Dév. Web & Mobile", "Reponsive"], 
+										"learn_more": "Gestion de rdv d'agenda et styles correspondants (google calendar), ajustements de la structure des données, corrections de bugs, ..." },
+									{ "sub_title" : "Mise en place d’un site basé sur le fonctionnement communautaire.", "description": "", "tags": ["Javascript", "NodeJS", "AngularJS", "MongoDB"], 
+										"learn_more": "See more on my github : ", "refs" : ["https:\/\/github.com\/PapageiSquirrel\/LEV"], "link": "Javascript" },
+									{ "sub_title" : "Création d’un éditeur de niveau et d’un moteur de jeu.", "description": "", "tags": ["Javascript", "NodeJS", "CreateJS"], 
+										"learn_more": "See more on my github : ", "refs" : ["https:\/\/github.com\/PapageiSquirrel\/EditeurNiveau"], "link": "Javascript" },
+									{ "sub_title" : "Analyse d’un logiciel de tirage de ronde et développement d’un prototype.", "description": "", "tags": ["Python", "Django"], 
+										"learn_more": "...", "link": "Python" }
+								]
+							},
+							{
+								"id" : 2,
+								"title" : "Nantes - Banque Populaire Atlantique",
+								"sub_title": "Technicien Informatique au SIRH",
+								"sidenote" : "de 2011 à 2014",
+								"type" : "NA",
+								"style" : {},
+								"order" : 0,
+								"details" : [
+									{ "sub_title" : "", "description": "Développement d’une application de gestion des augmentations de rémunération en autonomie", "tags": ["C#", "Silverlight", "SQL Server"], 
+										"learn_more": "...", "link": "C#" },
+									{ "sub_title" : "", "description": "Aide à la fiabilisation de la cartographie applicative de l’entreprise et réalisation de l’outil de suivi des habilitations", "tags": ["VBA", "Access"],
+										"learn_more": "..." },
+									{ "sub_title" : "", "description": "Réalisation d’une IHM de gestion des primes", "tags": ["VBA", "Excel"],
+										"learn_more": "..." }
+								]
+							}
+						]
+					},
+					{
+						"id": 2,
+						"title" : "",
+						"style" : {},
+						"order" : 0,
+						"topics" : []
+					},
+					{
+						"id": 3,
+						"title" : "",
+						"style" : {},
+						"order" : 0,
+						"topics" : []
+					}
+				]
+			},
+			{
+				"id" : 1,
+				"title" : "Développeur .NET",
+				"mode" : "PILE",
+				"sections" : []
+			},
+			{
+				"id" : 2,
+				"title" : "Barman",
+				"sections" : []
+			}
+		]
+	}
+}

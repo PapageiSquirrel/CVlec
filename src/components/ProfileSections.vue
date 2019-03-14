@@ -1,8 +1,8 @@
 <template>
 	<div id="section">
 		<h3>{{section.title}}</h3>
-		<div v-for="item in sortByOrder(section.topics)" v-bind:key="item.id">
-			<section-topics v-bind:topic="item" />
+		<div v-for="item in topicsSortedByOrder" v-bind:key="item.id">
+			<section-topics v-bind:sid="item.id" v-bind:topic="item" />
 		</div>
 	</div>
 </template>
@@ -18,9 +18,9 @@ export default {
 	props: {
 		section: Object
 	},
-	methods: {
-		sortByOrder: function(topics) {
-			if (topics) return topics.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0));
+	computed: {
+		topicsSortedByOrder: function() {
+			return this.section.topics.slice().sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0));
 		}
 	}
 }
