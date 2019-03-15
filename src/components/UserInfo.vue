@@ -2,6 +2,7 @@
   <div>
       <div>
         <h1 id="user.id">{{user.realname}}</h1>
+        <h5><span id="identite">{{user.age}} ans - {{user.adresse}} - {{user.tel}} - {{user.email}}</span></h5>
       </div>
     </div>
 </template>
@@ -30,5 +31,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+#identite {
+  color: grey;
 }
 </style>

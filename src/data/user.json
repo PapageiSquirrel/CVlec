@@ -5,9 +5,10 @@
 		"realname" : "Maël Rabasse",
 		"password" : "",
 		"age" : 30,
-		"adresse" : "18 rue Paul Lopin",
+		"adresse" : "18 rue Paul Lopin 56100 Lorient",
 		"fixe" : null,
-		"tel" : "0647866194",
+		"tel" : "06.47.86.61.94",
+		"email" : "mael.rabasse@hotmail.fr",
 		"photo" : null,
 		"profiles" : [
 			{
@@ -81,7 +82,10 @@
 								"sub_title": "Développeur Web Freelance",
 								"sidenote" : "depuis le 12/12/2017",
 								"type" : "NA",
-								"style" : {},
+								"style" : {
+									"background-color": "#1a1a1a",
+									"color": "#FFF"
+								},
 								"order" : 0,
 								"details" : [
 									{ "sub_title" : "", "description": "Refonte d’un logiciel de gestion de patientèle pour un groupe médical polynésien.", "tags": ["Python", "Django", "JQuery"], 
@@ -96,11 +100,14 @@
 								"sub_title": "",
 								"sidenote" : "de 2014 à 2017",
 								"type" : "NA",
-								"style" : {},
+								"style" : {
+									"background-color": "#333333",
+									"color": "#FFF"
+								},
 								"order" : 0,
 								"details" : [
 									{ "sub_title" : "Formation en auto-didacte : ", "description": "Frameworks Javascript (NodeJS, ExpressJS, VueJS, ReactJS, CreateJS), BDD \/ NoSQL (MongoDB, postgre), Android IDE", "tags": ["Dév. Web & Mobile", "Reponsive"], 
-										"learn_more": "Gestion de rdv d'agenda et styles correspondants (google calendar), ajustements de la structure des données, corrections de bugs, ..." },
+										"learn_more": "Gestion de rdv d'agenda et styles correspondants (google calendar), ajustements de la structure des données, corrections de bugs, ...", "link": "" },
 									{ "sub_title" : "Mise en place d’un site basé sur le fonctionnement communautaire.", "description": "", "tags": ["Javascript", "NodeJS", "AngularJS", "MongoDB"], 
 										"learn_more": "See more on my github : ", "refs" : ["https:\/\/github.com\/PapageiSquirrel\/LEV"], "link": "Javascript" },
 									{ "sub_title" : "Création d’un éditeur de niveau et d’un moteur de jeu.", "description": "", "tags": ["Javascript", "NodeJS", "CreateJS"], 
@@ -115,15 +122,18 @@
 								"sub_title": "Technicien Informatique au SIRH",
 								"sidenote" : "de 2011 à 2014",
 								"type" : "NA",
-								"style" : {},
+								"style" : {
+									"background-color": "#b3b3b3",
+									"color": "#000"
+								},
 								"order" : 0,
 								"details" : [
 									{ "sub_title" : "", "description": "Développement d’une application de gestion des augmentations de rémunération en autonomie", "tags": ["C#", "Silverlight", "SQL Server"], 
 										"learn_more": "...", "link": "C#" },
 									{ "sub_title" : "", "description": "Aide à la fiabilisation de la cartographie applicative de l’entreprise et réalisation de l’outil de suivi des habilitations", "tags": ["VBA", "Access"],
-										"learn_more": "..." },
+										"learn_more": "...", "link": "" },
 									{ "sub_title" : "", "description": "Réalisation d’une IHM de gestion des primes", "tags": ["VBA", "Excel"],
-										"learn_more": "..." }
+										"learn_more": "...", "link": "" }
 								]
 							}
 						]
