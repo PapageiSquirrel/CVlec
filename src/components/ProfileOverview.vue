@@ -26,7 +26,7 @@ export default {
 <style lang="less" scoped>
 .grid-container {
 	display: grid;
-  	grid-template-columns: auto auto;
+	grid-template-columns: auto auto;
 }
 #overview {
 	.grid-container();

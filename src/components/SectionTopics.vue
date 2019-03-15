@@ -6,7 +6,7 @@
 				<h5 v-if="topic.sub_title">{{topic.sub_title}}</h5>
 			</div>
 			<div v-if="isNoted" id="bar-flex" class="bordered progress-bar">
-				<div class="progress" v-bind:style="{ width: noteWidth, 'background-color': noteBG }"></div>
+				<div class="progress" v-bind:style="{ width: noteWidth }"></div> <!--, 'background-color': noteBG-->
 			</div>
 		</div>
 		<ol v-if="topic.details.length > 0">
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import less from 'less'
 import TopicDetails from './TopicDetails.vue'
 import stLinks from '../data/links.json'
 
@@ -32,8 +33,7 @@ export default {
 		return {
 			links: stLinks,
 			isNoted : this.topic.note ? true : false,
-			noteWidth : this.topic.note / 5 *100 + '%',
-			noteBG : this.topic.style['background-color'] ? this.topic.style['background-color'] : '#FFF'
+			noteWidth : this.topic.note / 5 *100 + '%'
 		}
 	},
 	computed: {
@@ -58,13 +58,18 @@ export default {
 				// TODO : ModeChange to highlight the link clicked
 			}
 		}
+	},
+	created() {
+		var bg_color = "#900"; //this.topic.style['background-color'] ? this.topic.style['background-color'] :
+		less.modifyVars({
+			'@bg': bg_color
+		});
 	}
 }
 </script>
 
-<style lang="less" scoped>
-@bg: #FFF;
-@bglighter: #999;
+<style lang="less">
+@bg: #000;
 .progress-bar {
 	background-color: #FFF;
 	flex-grow: 2;
@@ -73,7 +78,7 @@ export default {
 	padding: 5px;
 }
 .progress {
-	background-color: screen(@bg, @bglighter);
+	background-color: lighten(@bg, 20%);
 	display: block;
 	height: 100%;
 	position: relative;

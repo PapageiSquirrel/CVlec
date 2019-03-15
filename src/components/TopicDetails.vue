@@ -1,19 +1,23 @@
 <template>
 	<li id="details" v-bind:style="linkStyle">
-		<div class="grid-container">
-			<div v-bind:style="{ 'grid-column': '1 / span 3', 'grid-row': '1' }">
-				<span class="title">{{ detail.sub_title }}</span><span id="desc"> {{ detail.description }}   </span>
-				<font-awesome-icon id="iconmore" v-on:click="SeeMore" v-bind:icon="icon" />
+		<div>
+			<div class="infobox">
+				<div>
+					<span class="title">{{ detail.sub_title }}</span><span id="desc"> {{ detail.description }}   </span>
+					<font-awesome-icon id="iconmore" v-on:click="SeeMore" v-bind:icon="icon" />
+				</div>
+				<transition name="slide-fade">
+					<p v-if="toggle" class="vof">
+						{{detail.learn_more}} 
+						<span v-for="item in detail.refs" v-bind:key="item"><a v-bind:href="item">{{item}}</a></span>
+					</p>
+				</transition>
 			</div>
-			<div v-bind:style="{ 'grid-column': '4', 'grid-row': '1 / span 3' }">
+			<div class="infobox">
 				<ul >
 					<li id="tags" v-for="(tag, index) in detail.tags" v-bind:key="index"><span> {{tag}}</span></li>
 				</ul>
 			</div>
-			<p v-if="toggle" v-bind:style="{ 'grid-column': '1 / span 3', 'grid-row': '1 / span 2' }">
-				{{detail.learn_more}} 
-				<span v-for="item in detail.refs" v-bind:key="item"><a v-bind:href="item">{{item}}</a></span>
-			</p>
 		</div>
 	</li>
 </template>
@@ -117,15 +121,45 @@ a:active {
 	text-decoration: underline;
 }
 
-.grid-container {
-	display: grid;
-}
+/* classes */
 .title {
 	text-decoration: underline;
 }
+.infobox {
+	display: inline-block;
+	margin-left: 10px;
+}
 
+/* Transitions */
+.fade-enter-active, .fade-leave-active {
+	transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	opacity: 0;
+}
 
-/* buttons style */
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.vof {
+	margin: 0px;
+	padding: 2px;
+	height: auto;
+	overflow-y: hidden;
+}
+
+.slide-fade-enter-active {
+	transition: all .3s ease;
+}
+.slide-fade-leave-active {
+	transition: all .3s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+	transform: translateX(10px);
+	opacity: 0;
+	height: 0px;
+}
+
+/* IDs */
 #iconmore {
 	padding: 0px;
 	margin: 0px;
@@ -135,8 +169,16 @@ a:active {
 	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
 }
+
+/* animations */
 @keyframes grow {
 	from {transform: scale(1, 1);}
 	to {transform: scale(1.2, 1.2);}
 }
+/*
+@keyframes slip {
+	from {height: 0%;}
+	to {height: 100%;}
+}
+*/
 </style>
