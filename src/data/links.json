@@ -2,8 +2,12 @@
 	{
 		"name": "Javascript",
 		"style" : {
-			"background-color": "#F98602",
-			"color": "#713E04"
+			"margin": "1px 10px",
+			"padding": "2px 10px",
+			"border": "2px solid #F98602",
+			"border-radius": "25px",
+			"background-color": "#ffcc99",
+			"color": "#000"
 		},
 		"init": {"section": 0, "topic": 0},
 		"affects": [
@@ -14,7 +18,11 @@
 	{
 		"name": "Python",
 		"style" : {
-			"background-color": "#139908",
+			"margin": "1px 10px",
+			"padding": "2px 10px",
+			"border": "2px solid #139908",
+			"border-radius": "25px",
+			"background-color": "#99ff99",
 			"color": "#000"
 		},
 		"init": {"section": 0, "topic": 2},
@@ -26,8 +34,12 @@
 	{
 		"name": "C#",
 		"style" : {
-			"background-color": "#1B4FFA",
-			"color": "#FFF"
+			"margin": "1px 10px",
+			"padding": "2px 10px",
+			"border": "2px solid #1B4FFA",
+			"border-radius": "25px",
+			"background-color": "#99ccff",
+			"color": "#000"
 		},
 		"init": {"section": 0, "topic": 1},
 		"affects": [

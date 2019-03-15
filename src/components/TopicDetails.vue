@@ -1,8 +1,20 @@
 <template>
-	<li v-bind:style="linkStyle">
-		<span id="title">{{ detail.sub_title }} </span><span id="desc">{{ detail.description }}</span>
-		<button v-on:click="SeeMore">{{text}}</button> 
-		<p v-if="toggle">{{detail.learn_more}} <span v-for="item in detail.refs" v-bind:key="item"><a v-bind:href="item">{{item}}</a></span></p>
+	<li id="details" v-bind:style="linkStyle">
+		<div class="grid-container">
+			<div v-bind:style="{ 'grid-column': '1 / span 3', 'grid-row': '1' }">
+				<span class="title">{{ detail.sub_title }}</span><span id="desc"> {{ detail.description }}   </span>
+				<font-awesome-icon id="iconmore" v-on:click="SeeMore" v-bind:icon="icon" />
+			</div>
+			<div v-bind:style="{ 'grid-column': '4', 'grid-row': '1 / span 3' }">
+				<ul >
+					<li id="tags" v-for="(tag, index) in detail.tags" v-bind:key="index"><span> {{tag}}</span></li>
+				</ul>
+			</div>
+			<p v-if="toggle" v-bind:style="{ 'grid-column': '1 / span 3', 'grid-row': '1 / span 2' }">
+				{{detail.learn_more}} 
+				<span v-for="item in detail.refs" v-bind:key="item"><a v-bind:href="item">{{item}}</a></span>
+			</p>
+		</div>
 	</li>
 </template>
 
