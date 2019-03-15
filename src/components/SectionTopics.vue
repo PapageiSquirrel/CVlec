@@ -1,12 +1,15 @@
 <template>
 	<div id="topic" v-bind:style="topic.style">
 		<div class="flex-container">
-			<div id="title-flex"><h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" icon="link" /> {{topic.title}}</h4></div>
+			<div id="title-flex">
+				<h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" icon="link" /> {{topic.title}}</h4>
+				<h5 v-if="topic.sub_title">{{topic.sub_title}}</h5>
+			</div>
 			<div v-if="isNoted" id="bar-flex" class="bordered progress-bar">
 				<div class="progress" v-bind:style="{ width: noteWidth, 'background-color': noteBG }"></div>
 			</div>
 		</div>
-		<ol>
+		<ol v-if="topic.details.length > 0">
 			<topic-details v-for="(item, index) in topic.details" v-bind:detail="item" v-bind:key="index" />
 		</ol>
 	</div>
@@ -60,6 +63,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@bg: #FFF;
+@bglighter: #999;
 .progress-bar {
 	background-color: #FFF;
 	flex-grow: 2;
@@ -68,6 +73,7 @@ export default {
 	padding: 5px;
 }
 .progress {
+	background-color: screen(@bg, @bglighter);
 	display: block;
 	height: 100%;
 	position: relative;
@@ -78,6 +84,7 @@ export default {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	border-bottom: 2px solid black;
 }
 .flex-container > div {
 	margin-left: 20px;
@@ -111,7 +118,12 @@ export default {
 
 /* global */
 h4 {
-	margin: 15px;
+	margin-top: 15px;
+	margin-bottom: 8px;
+}
+h5 {
+	margin: 0px;
+	padding: 0px;
 }
 ol {
 	list-style-type: none;

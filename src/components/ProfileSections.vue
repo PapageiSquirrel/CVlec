@@ -2,7 +2,7 @@
 	<div id="section">
 		<h3>{{section.title}}</h3>
 		<div v-for="item in topicsSortedByOrder" v-bind:key="item.id">
-			<section-topics v-bind:sid="item.id" v-bind:topic="item" />
+			<section-topics v-bind:sid="section.id" v-bind:topic="item" />
 		</div>
 	</div>
 </template>
@@ -29,5 +29,8 @@ export default {
 <style lang="less" scoped>
 #section {
 	margin: 5px;
+}
+h3 {
+	border-bottom: 2px solid black;
 }
 </style>

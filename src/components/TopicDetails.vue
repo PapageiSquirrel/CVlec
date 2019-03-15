@@ -18,7 +18,7 @@ export default {
 		return {
 			links: stLinks,
 			toggle : false,
-			text : '+'
+			icon : 'folder'
 		}
 	},
 	computed: {
@@ -29,14 +29,22 @@ export default {
 					return l.name == link_name;
 				});
 				return link.style;
-			} else
-				return {};
+			} else if (this.detail.link == "") {
+				return {
+					margin: "1px 10px",
+					padding: "2px 10px",
+					border: "2px solid #666666",
+					"border-radius": "25px",
+					"background-color": "#d9d9d9",
+					color: "#000"
+				};
+			} else return {}
 		}
 	},
 	methods: {
 		SeeMore: function() {
-			if (this.text == '+') this.text = '-';
-			else this.text = '+';
+			if (this.icon == 'folder') this.icon = 'folder-open';
+			else this.icon = 'folder';
 
 			this.toggle = !this.toggle;
 		}
@@ -46,14 +54,27 @@ export default {
 
 <style lang="less" scoped>
 /* list style */
+ul {
+	list-style-type: none;
+}
 li {
 	text-align: left;
 }
+li #tags {
+	display: inline;
+}
+li #tags > span {
+	padding-right: 6px;
+	text-align: right;
+	font-style: italic;
+	font-size: 14px;
+	border-right: solid 3px #4d4d4d;
+}
+li #tags > span:hover {
+	background-color: #FFF
+}
 
 /* span style */
-span #title {
-	text-decoration: underline;
-}
 span #desc {
 
 }
@@ -67,12 +88,12 @@ a {
 	
 }
 a:link {
-	color: #222;
+	color: #990000;
 	text-decoration: none;
 }
 
 a:visited {
-	color: #222;
+	color: #660066;
 	text-decoration: none;
 }
 
@@ -84,15 +105,22 @@ a:active {
 	text-decoration: underline;
 }
 
-/* buttons style */
-button {
-	border-radius: 2px;
-	padding: 4px;
-	margin: 4px;
+.grid-container {
+	display: grid;
 }
-button:hover {
+.title {
+	text-decoration: underline;
+}
+
+
+/* buttons style */
+#iconmore {
+	padding: 0px;
+	margin: 0px;
+}
+#iconmore:hover {
 	animation-name: grow;
-	animation-duration: 1s;
+	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
 }
 @keyframes grow {
