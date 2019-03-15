@@ -9,23 +9,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faLink, faFolder, faFolderOpen } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 import UserInfo from './components/UserInfo.vue'
 import UserProfiles from './components/UserProfiles.vue'
 import ProfileOverview from './components/ProfileOverview.vue'
 
 import Data from './data/user.json'
-
-library.add(faLink)
-library.add(faFolder)
-library.add(faFolderOpen)
-
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 export default {
   name: 'app',
@@ -48,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
