@@ -1,9 +1,9 @@
 <template>
-  <div id="userinfo">
-      <div class="infobox">
-        <img src='../assets/photo.webp' />
+  <div id="userinfo" class="w3-container w3-row">
+      <div class="w3-col m3 l2">
+        <img class="w3-round" src='../assets/photo.webp' />
       </div>
-      <div class="infobox">
+      <div class="w3-col m6 l4">
         <h1 class="maintitle" id="user.id">{{user.realname}}</h1>
         <h5><span id="identite">{{user.age}} ans - {{user.adresse}} - {{user.tel}} - {{user.email}}</span></h5>
       </div>
