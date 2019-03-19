@@ -1,11 +1,10 @@
 <template>
   <div>
-    <ol v-if="id_chosen == -1">
-      <li v-for="profile in user.profiles" v-bind:key="profile.id">
-        <button v-on:click="id_chosen = profile.id">{{profile.title}}</button>
+    <ol>
+      <li v-for="profile in profiles" v-bind:key="profile.id">
+        <button v-on:click="id_chosen = profile.id" v-bind:class="{ active: id_chosen === profile.id }" v-bind:style="{ width: buttonWidth }">{{profile.title}}</button>
       </li>
     </ol>
-    <button v-if="id_chosen != -1"  v-on:click="id_chosen = -1">Autre Profile</button>
   </div>
 </template>
 
@@ -13,11 +12,16 @@
 export default {
   name: 'UserProfiles',
   props: {
-    user: Object
+    profiles: Array
   },
   data: function() {
     return {
-      id_chosen : -1
+      id_chosen : 0
+    }
+  },
+  computed: {
+    buttonWidth: function() {
+      return (1/this.profiles.length)*100 + '%';
     }
   },
   watch: {
@@ -33,15 +37,40 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
-ul {
+ol {
   list-style-type: none;
-  padding: 0;
+  padding: 10px 0px 0px 0px;
+  margin: 0;
 }
 li {
-  display: inline-block;
-  margin: 0 10px;
+  display: inline;
+  margin: 0;
 }
 a {
   color: #42b983;
+}
+
+div {
+  margin: 0px;
+  padding: 0px;
+}
+
+button {
+  padding: 4px 0px;
+  margin: 0px;
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  cursor: pointer;
+  margin-bottom: -1px;
+  margin-right: -1px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+button:hover {
+  border: 1px solid #ccc;
+  background: #e0e0e0;
+}
+button.active {
+  background: #e0e0e0;
 }
 </style>

@@ -10,11 +10,16 @@
 		"tel" : "06.47.86.61.94",
 		"email" : "mael.rabasse@hotmail.fr",
 		"photo" : null,
+		"contacts" : [
+			{ "type" : "Github", "link" : "https://github.com/PapageiSquirrel" },
+			{ "type" : "Malt", "link" : "https://www.malt.fr/profile/maelrabasse" }
+		],
 		"profiles" : [
 			{
 				"id" : 0,
 				"title" : "Développeur Web Full-Stack",
 				"mode" : "SPLIT",
+				"aboutme" : "Développeur principalement javascript, lancé en freelance depuis un an. \nJ'aime me former aux nouveaux frameworks en étudiant leurs possibilités.",
 				"sections" : [
 					{
 						"id": 0,

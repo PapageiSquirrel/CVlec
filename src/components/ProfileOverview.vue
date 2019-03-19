@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="profileOverview">
 		<h2>{{profile.title}}</h2>
 		<div id="overview">
 			<div v-for="item in profile.sections" v-bind:key="item.id">
@@ -28,9 +28,15 @@ export default {
 	display: grid;
 	grid-template-columns: auto auto;
 }
+
 #overview {
 	.grid-container();
 }
+#profileOverview {
+	margin: 0px;
+	border: solid 1px #ccc;
+}
+
 h2 {
 
 }
