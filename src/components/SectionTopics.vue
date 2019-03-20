@@ -1,12 +1,12 @@
 <template>
 	<div id="topic" v-bind:style="topic.style">
-		<div class="flex-container">
-			<div id="title-flex">
+		<div>
+			<header class="w3-container">
 				<h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" icon="link" /> {{topic.title}}</h4>
-				<h5 v-if="topic.sub_title">{{topic.sub_title}}</h5>
-			</div>
+				<h6 v-if="topic.sub_title">{{topic.sub_title}}</h6>
+			</header>
 			<div v-if="isNoted" id="bar-flex" class="bordered progress-bar">
-				<div class="progress" v-bind:style="{ width: noteWidth }"></div> <!--, 'background-color': noteBG-->
+				<div class="progress" v-bind:style="{ width: noteWidth, 'background-color': noteBG }"></div> <!--, 'background-color': noteBG-->
 			</div>
 		</div>
 		<ol v-if="topic.details.length > 0">
@@ -33,7 +33,8 @@ export default {
 		return {
 			links: stLinks,
 			isNoted : this.topic.note ? true : false,
-			noteWidth : this.topic.note / 5 *100 + '%'
+			noteWidth : this.topic.note *100 + '%',
+			noteBG : this.topic.style['background-color']
 		}
 	},
 	computed: {
@@ -59,7 +60,7 @@ export default {
 			}
 		}
 	},
-	created() {
+	beforeUpdate() {
 		var bg_color = "#900"; //this.topic.style['background-color'] ? this.topic.style['background-color'] :
 		less.modifyVars({
 			'@bg': bg_color
@@ -84,27 +85,6 @@ export default {
 	position: relative;
 	overflow: hidden;
 }
-
-.flex-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	border-bottom: 2px solid black;
-}
-.flex-container > div {
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-top: 5px;
-}
-.flex-container > #title-flex {
-	flex-grow: 1;
-	text-align: center;
-	margin: 0px;
-}
-.flex-container > #bar-flex {
-	flex-grow: 2;
-}
-
 .bordered {
 	border-top: solid 1px black;
 	border-left: solid 1px black;
@@ -122,13 +102,8 @@ export default {
 }
 
 /* global */
-h4 {
-	margin-top: 15px;
-	margin-bottom: 8px;
-}
-h5 {
-	margin: 0px;
-	padding: 0px;
+h6 {
+	margin-top: -5px;
 }
 ol {
 	list-style-type: none;

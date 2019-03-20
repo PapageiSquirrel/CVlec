@@ -3,7 +3,7 @@
 		<h2>{{profile.title}}</h2>
 		<div id="overview">
 			<div v-for="item in profile.sections" v-bind:key="item.id">
-				<profile-sections v-bind:section="item" />
+				<profile-sections v-bind:section="item" v-on:selectSection="SelectSection" />
 			</div>
 		</div>
 	</div>
@@ -19,6 +19,11 @@ export default {
 	},
 	props: {
 		profile : Object
+	},
+	methods: {
+		SelectSection: function(val) {
+			this.$emit("selectSection", val);
+		}
 	}
 }
 </script>

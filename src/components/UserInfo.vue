@@ -1,11 +1,26 @@
 <template>
-  <div id="userinfo" class="w3-container w3-row">
+  <div id="userinfo" class="w3-container w3-row w3-card-4">
       <div class="w3-col m3 l2">
-        <img class="w3-round" src='../assets/photo.webp' />
+        <img src='../assets/photo.webp' />
       </div>
-      <div class="w3-col m6 l4">
-        <h1 class="maintitle" id="user.id">{{user.realname}}</h1>
-        <h5><span id="identite">{{user.age}} ans - {{user.adresse}} - {{user.tel}} - {{user.email}}</span></h5>
+      <div class="w3-col m5 l5 w3-left-align">
+        <div class="w3-panel">
+          <h1 class="maintitle" id="user.id">{{user.realname}}</h1>
+          <h5><span id="identite">
+            <font-awesome-icon icon="calendar" /> {{user.age}} ans <br>
+            <font-awesome-icon icon="home" /> {{user.adresse}} <br>
+            <font-awesome-icon icon="phone" /> {{user.tel}} <br>
+            <font-awesome-icon icon="at" /> {{user.email}}
+          </span></h5>
+        </div>
+      </div>
+      <div class="w3-col m4 l5">
+        <h2 class="w3-left-align" style="margin-left:20px">Profile</h2>
+        <p class="w3-sand w3-leftbar w3-panel w3-opacity w3-left-align">
+          <span style="font-size:25px;line-height:0.6em;opacity:0.8">&#10077;</span> 
+          <i style="margin-top: -5px;margin-bottom: -5px">{{user.aboutme}}</i> 
+          <span style="font-size:25px;line-height:0.6em;opacity:0.8">&#10078;</span>
+        </p>
       </div>
     </div>
 </template>
@@ -39,17 +54,20 @@ a {
   color: #42b983;
 }
 img {
-  height: 120px;
-  width: 120px; 
+  height: 100%;
+  width: 100%;
+}
+div {
+  margin: 0px 10px;
+  padding: 0;
+}
+#userinfo > div {
+  margin: 0;
+  padding: 0;
 }
 
-.infobox {
-  display: inline-block;
-  margin-left: 10px;
-  text-align: left;
-}
 .maintitle {
-  font-size: 5em;
+  font-size: 3em;
 }
 
 #identite {

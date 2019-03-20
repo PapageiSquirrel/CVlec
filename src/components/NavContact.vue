@@ -1,8 +1,8 @@
 <template>
   <div id="navContact">
-     <ol>
-      <li v-for="contact in contacts" v-bind:key="contact.type">
-        <p><a v-bind:href="contact.link">{{contact.type}}</a></p>
+     <ol class="w3-ul w3-border w3-card">
+      <li v-for="contact in contacts" v-bind:key="contact.type" class="w3-block w3-hover-blue">
+        <a class="" v-bind:href="contact.link">{{contact.type}}</a>
       </li>
     </ol>
   </div>
@@ -29,32 +29,5 @@ ol {
 }
 p {
   padding: 10px;
-}
-
-/* link style */
-a {
-  text-decoration: none;
-  padding: 10px;
-}
-a:link {
-  border: solid 2px dodgerblue;
-  background-color: #FFF;
-  color: #000;
-}
-
-a:visited {
-  border: solid 2px dodgerblue;
-  background-color: lightblue;
-  color: #000;
-}
-
-a:hover {
-  border: solid 2px dodgerblue;
-  background-color: dodgerblue;
-  color: #FFF;
-}
-
-a:active {
-  
 }
 </style>

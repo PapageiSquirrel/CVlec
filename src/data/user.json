@@ -9,6 +9,7 @@
 		"fixe" : null,
 		"tel" : "06.47.86.61.94",
 		"email" : "mael.rabasse@hotmail.fr",
+		"aboutme" : "Développeur principalement javascript, lancé en freelance depuis un an. \nJ'aime me former aux nouveaux frameworks en étudiant leurs possibilités à travers des projets.",
 		"photo" : null,
 		"contacts" : [
 			{ "type" : "Github", "link" : "https://github.com/PapageiSquirrel" },
@@ -19,7 +20,6 @@
 				"id" : 0,
 				"title" : "Développeur Web Full-Stack",
 				"mode" : "SPLIT",
-				"aboutme" : "Développeur principalement javascript, lancé en freelance depuis un an. \nJ'aime me former aux nouveaux frameworks en étudiant leurs possibilités.",
 				"sections" : [
 					{
 						"id": 0,
@@ -38,7 +38,7 @@
 									"color": "#713E04"
 								},
 								"order" : 0,
-								"note" : 5,
+								"note" : 0.9,
 								"details" : [
 							   		{ "sub_title" : "Frameworks Front-End :", "description": "VueJs, AngularJs, ReactJS", "learn_more": "See more on my github : lien" },
 							    	{ "sub_title" : "Frameworks Back-End :", "description": "NodeJS, ExpressJS", "learn_more": "See more on my github : lien" }
@@ -54,7 +54,7 @@
 									"background-color": "#1B4FFA"
 								},
 								"order" : 1,
-								"note" : 4,
+								"note" : 0.7,
 								"details" : [
 									{ "sub_title" : "Frameworks Front-End :", "description": "Silverlight", "learn_more": "See more on my github : lien" },
 							    	{ "sub_title" : "Frameworks Back-End :", "description": "REST", "learn_more": "See more on my github : lien" }
@@ -70,7 +70,7 @@
 									"background-color": "#139908"
 								},
 								"order" : 2,
-								"note" : 2,
+								"note" : 0.5,
 								"details" : []
 							}
 						]

@@ -1,8 +1,8 @@
 <template>
 	<li id="details" v-bind:style="linkStyle">
 		<div>
-			<div class="infobox">
-				<div>
+			<div>
+				<div class="w3-container">
 					<span class="title">{{ detail.sub_title }}</span><span id="desc"> {{ detail.description }}   </span>
 					<font-awesome-icon id="iconmore" v-on:click="SeeMore" v-bind:icon="icon" />
 				</div>
@@ -13,9 +13,11 @@
 					</p>
 				</transition>
 			</div>
-			<div class="infobox">
-				<ul >
-					<li id="tags" v-for="(tag, index) in detail.tags" v-bind:key="index"><span> {{tag}}</span></li>
+			<div class="w3-container">
+				<ul>
+					<li id="tags" v-for="(tag, index) in detail.tags" v-bind:key="index">
+						<i class="w3-small w3-tag w3-gray w3-hover-white" style="transform:rotate(-5deg)"> {{tag}}</i>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -77,17 +79,8 @@ li {
 	text-align: left;
 }
 li #tags {
+	padding: 4px;
 	display: inline;
-}
-li #tags > span {
-	padding-right: 6px;
-	text-align: right;
-	font-style: italic;
-	font-size: 14px;
-	border-right: solid 3px #4d4d4d;
-}
-li #tags > span:hover {
-	background-color: #FFF
 }
 
 /* span style */

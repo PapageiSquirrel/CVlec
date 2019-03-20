@@ -1,6 +1,6 @@
 <template>
 	<div id="section">
-		<h3>{{section.title}}</h3>
+		<h3 v-on:click="selectSection">{{section.title}}</h3>
 		<div v-for="item in topicsSortedByOrder" v-bind:key="item.id">
 			<section-topics v-bind:sid="section.id" v-bind:topic="item" />
 		</div>
@@ -22,13 +22,18 @@ export default {
 		topicsSortedByOrder: function() {
 			return this.section.topics.slice().sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0));
 		}
+	},
+	methods: {
+		selectSection: function() {
+			this.$emit("selectSection", this.section.id);
+		}
 	}
 }
 </script>
 
 <style lang="less" scoped>
 #section {
-	margin: 5px;
+	
 }
 h3 {
 	border-bottom: 2px solid black;

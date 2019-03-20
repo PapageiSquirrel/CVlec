@@ -1,29 +1,30 @@
 <template>
   <div id="app">
-    <div class="w3-container">
-      <div id="banniere-titre" class="w3-row">
-        <h1 class="w3-hide-small w3-wide">CVlec</h1>
+    <div >
+      <div id="banniere-titre" class="w3-left" style="margin-left:30px;">
+        <h1 class="w3-hide-small w3-wide">
+          <b class="w3-text-blue-gray" style="font-size:1.5em;text-shadow:1px 1px 0 #444;">CV</b>
+          <span class="w3-text-black" style="text-shadow:1px 1px 0 #444;">lec</span>
+        </h1>
       </div>
 
-      <nav id="nav-bar" class="w3-row w3-bar w3-blue-gray">
+      <nav id="nav-bar" ref="stickyBar" v-bind:class="{ sticky : isSticky }" class="w3-card-2 w3-bar w3-blue-gray">
         <div class="w3-bar-item w3-button">Home</div>
         <div class="w3-bar-item w3-button">About Me</div>
         <div class="w3-bar-item w3-button w3-right">Contact Me</div>
       </nav>
 
       <div class="w3-row">
-        <nav id="nav-tab" class="w3-col m2 l2 w3-bar-block w3-collapse w3-white w3-hover-border-gray w3-animate-left"><br>
-          <a href="#" v-on:change="" class="w3-bar-item w3-button w3-padding-large w3-black" style="width:100%;">
-            {{user.profiles[selectedProfile].title}}
-          </a>
-        </nav>
+        <div id="nav-tab" class="w3-col m2 l2">
+          <nav-tab v-bind:tree="tree" v-bind:depth="0" />
+        </div>
 
         <div id="main-view" class="w3-col m8 l9">
           <user-info v-bind:user="user" />
 
           <user-profiles v-bind:profiles="user.profiles" v-on:select="SelectProfile" />
 
-          <profile-overview v-if="selectedProfile != -1" v-bind:profile="user.profiles[selectedProfile]" />
+          <profile-overview v-if="selectedProfile != -1" v-bind:profile="user.profiles[selectedProfile]" v-on:selectSection="SelectSection" />
         </div>
 
         <div id="nav-contact" class="w3-col m2 l1">
@@ -42,6 +43,7 @@ import UserInfo from './components/UserInfo.vue'
 import UserProfiles from './components/UserProfiles.vue'
 import ProfileOverview from './components/ProfileOverview.vue'
 import NavContact from './components/NavContact.vue'
+import NavTab from './components/NavTab.vue'
 
 import Data from './data/user.json'
 
@@ -51,19 +53,63 @@ export default {
     UserInfo,
     UserProfiles,
     ProfileOverview,
-    NavContact
+    NavContact,
+    NavTab
   },
   data: function() {
     return {
+      barOffset: null,
+      isSticky: false,
       selectedProfile : 0,
+      selectedSection: -1,
+      selectedLink : null,
       user : Data.Me
+    }
+  },
+  computed: {
+    tree: function() {
+      var profile = this.user.profiles[this.selectedProfile];
+      var t = { label: "Navigation", nodes: [{ label: profile.title, nodes: [] }] };
+      if (this.selectedSection != -1) {
+        var section = profile.sections[this.selectedSection];
+        t.nodes[0].nodes.push({ label: section.title, nodes: [] });
+      }
+      return t;
+      /*
+      if (selectedLink != null) {
+        var link = profile.sections[selectedSection];
+        t.nodes.push({ label: section.title, nodes: [] });
+      }
+      */
     }
   },
   methods: {
     SelectProfile: function(val) {
       this.selectedProfile = val;
+    },
+    SelectSection: function(val) {
+      this.selectedSection = val;
+    },
+    updateSticky: function() {
+      if (this.barOffset == null && this.$refs.stickyBar) {
+        this.barOffset = this.$refs.stickyBar.offsetTop;
+      }
+
+      if (this.barOffset != null) {
+        if (window.pageYOffset >= this.barOffset) {
+          this.isSticky = true;
+        } else {
+          this.isSticky = false;
+        }
+      } 
     }
   },
+  created () {
+    window.addEventListener('scroll', this.updateSticky);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.updateSticky);
+  }
 }
 </script>
 
@@ -74,23 +120,37 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 #banniere-titre {
-  
+  background-color:#ffffff;
 }
 #nav-bar {
-  
+  z-index: 9999;
+  overflow: hidden;
 }
 #nav-tab {
   border-right: solid 4px black;
 }
 #main-view {
   overflow-y: auto;
+  padding-bottom: 30px;
 }
 #nav-contact {
   
 }
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+
 footer {
   position: fixed;
   bottom: 0;
