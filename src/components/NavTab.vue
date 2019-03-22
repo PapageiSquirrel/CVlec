@@ -1,11 +1,10 @@
 <template>
   <nav id="navTab" class="w3-bar-block w3-collapse w3-white w3-hover-border-gray w3-animate-left">
-    <transition name="slide">
-      <a href="#" v-on:mouseover="animateTree" v-bind:class="{ 'w3-green' : tree.label == 'Navigation', 'w3-black' : tree.label != 'Navigation' }" class="w3-bar-item w3-button w3-padding-large" style="width:100%;">
-        <span v-bind:style="{ 'margin-left' : (depth *10) + 'px' }"><font-awesome-icon v-if="tree.label != 'Navigation'" icon="long-arrow-alt-right" /> {{tree.label}}</span>
-      </a>
-    </transition>
-    <nav-tab v-for="node in tree.nodes" v-bind:key="node.label" v-bind:tree="node" v-bind:depth="depth+1" />
+    <span v-if="tree.label == 'Navigation'" class="w3-bar-item w3-padding-large w3-green">{{tree.label}}</span>
+    <a v-else href="#" v-on:click="NavigateTo(tree.id)" v-bind:class="{ 'w3-green' : tree.active, 'w3-black': !tree.active }" class="w3-bar-item w3-button w3-padding-large" v-bind:style="{ 'margin-left': depth*3 + '%', width: 100-depth*3 + '%', 'opacity': 1-(depth-1)/10}">
+      <span><font-awesome-icon icon="long-arrow-alt-right" /> {{tree.label}}</span>
+    </a>
+    <nav-tab v-for="node in tree.nodes" v-bind:key="node.label" v-bind:tree="node" v-bind:depth="depth+1" v-on:navigateTo="NavigateTo" />
   </nav>
 </template>
 
@@ -17,8 +16,14 @@ export default {
     depth: Number
   },
   methods: {
-    animateTree: function() {
-      
+    NavigateTo: function(val) {
+      if (this.depth == 1 && typeof val == "number") {
+        this.$emit("navigateTo", { "profile": val });
+      } else if (this.depth == 2 && typeof val == "number") {
+        this.$emit("navigateTo", { "section": val });
+      } else if (val != null) {
+        this.$emit("navigateTo", val);
+      }
     }
   }
 }
@@ -38,5 +43,13 @@ export default {
 }
 .slide-enter, .slide-leave-to {
   transform: translateX(10px);
+}
+
+a {
+
+}
+a:hover {
+  transform: translateX(10px);
+  transition: all .5s ease;
 }
 </style>

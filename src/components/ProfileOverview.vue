@@ -1,9 +1,11 @@
 <template>
-	<div id="profileOverview">
-		<h2>{{profile.title}}</h2>
+	<div id="profileOverview" class="w3-container">
+		<h2><span class="bgi">{{profile.title}}</span></h2>
 		<div id="overview">
 			<div v-for="item in profile.sections" v-bind:key="item.id">
-				<profile-sections v-bind:section="item" v-on:selectSection="SelectSection" />
+				<transition name="enlarge">
+					<profile-sections v-if="isShown(item.id)" class="trans-section" v-bind:section="item" v-on:selectSection="SelectSection" />
+				</transition>
 			</div>
 		</div>
 	</div>
@@ -18,11 +20,16 @@ export default {
 		ProfileSections
 	},
 	props: {
-		profile : Object
+		profile : Object,
+		selectedSection : Number
 	},
 	methods: {
 		SelectSection: function(val) {
 			this.$emit("selectSection", val);
+		},
+		isShown: function(sid) {
+			if (this.selectedSection != -1 && this.selectedSection != sid) return false;
+			return true;
 		}
 	}
 }
@@ -33,16 +40,29 @@ export default {
 	display: grid;
 	grid-template-columns: auto auto;
 }
+.trans-section {
+	width: 100%;
+	overflow:hidden;
+}
+
+.enlarge-enter-active {
+	transition: all .3s ease;
+}
+.enlarge-leave-active {
+	transition: all .3s ease;
+}
+.enlarge-enter, .enlarge-leave-to {
+	width: 0%;
+}
 
 #overview {
 	.grid-container();
 }
-#profileOverview {
-	margin: 0px;
-	border: solid 1px #ccc;
-}
 
 h2 {
-
+	text-shadow:1px 1px 0 #444;
+}
+.bgi {
+	background-image: radial-gradient(lightgray 50%, white 50%);
 }
 </style>

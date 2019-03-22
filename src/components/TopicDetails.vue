@@ -4,13 +4,13 @@
 			<div>
 				<div class="w3-container">
 					<span class="title">{{ detail.sub_title }}</span><span id="desc"> {{ detail.description }}   </span>
-					<font-awesome-icon id="iconmore" v-on:click="SeeMore" v-bind:icon="icon" />
+					<font-awesome-icon id="iconmore" v-if="detail.learn_more != ''" v-on:click="SeeMore" v-bind:icon="icon" />
 				</div>
-				<transition name="slide-fade">
-					<p v-if="toggle" class="vof">
-						{{detail.learn_more}} 
+				<transition name="slide" v-on:after-enter="afterEnter">
+					<div v-if="toggle" v-bind:class="{ 'w3-hide': afterEnter() }" class="trans-slide w3-container w3-card-4">
+						<i>{{detail.learn_more}} </i>
 						<span v-for="item in detail.refs" v-bind:key="item"><a v-bind:href="item">{{item}}</a></span>
-					</p>
+					</div>
 				</transition>
 			</div>
 			<div class="w3-container">
@@ -65,6 +65,9 @@ export default {
 			else this.icon = 'folder';
 
 			this.toggle = !this.toggle;
+		},
+		afterEnter: function() {
+			return !this.toggle;
 		}
 	}
 }
@@ -122,34 +125,23 @@ a:active {
 	display: inline-block;
 	margin-left: 10px;
 }
-
-/* Transitions */
-.fade-enter-active, .fade-leave-active {
-	transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-	opacity: 0;
+.trans-slide {
+	padding: 10px 10px;
+	max-height: 10em;
+	overflow:hidden;
 }
 
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
-.vof {
-	margin: 0px;
-	padding: 2px;
-	height: auto;
-	overflow-y: hidden;
-}
-
-.slide-fade-enter-active {
+.slide-enter-active {
 	transition: all .3s ease;
 }
-.slide-fade-leave-active {
+.slide-leave-active {
 	transition: all .3s ease;
 }
-.slide-fade-enter, .slide-fade-leave-to {
-	transform: translateX(10px);
+.slide-enter, .slide-leave-to {
+	transform: translateX(30px);
 	opacity: 0;
-	height: 0px;
+	max-height: 0px;
+	padding: 0px 10px;
 }
 
 /* IDs */
@@ -169,7 +161,7 @@ a:active {
 	to {transform: scale(1.2, 1.2);}
 }
 /*
-@keyframes slip {
+@keyframes slide {
 	from {height: 0%;}
 	to {height: 100%;}
 }

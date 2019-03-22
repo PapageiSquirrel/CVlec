@@ -1,8 +1,8 @@
 <template>
-	<div id="topic" v-bind:style="topic.style">
+	<div id="topic" v-bind:style="topic.style" v-bind:class="{ 'w3-blue-gray': !hasBgColor }">
 		<div>
-			<header class="w3-container">
-				<h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" icon="link" /> {{topic.title}}</h4>
+			<header class="w3-container" >
+				<h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" v-bind:icon="iconName" /><span style="color:#FFF;"> {{topic.title}}</span></h4>
 				<h6 v-if="topic.sub_title">{{topic.sub_title}}</h6>
 			</header>
 			<div v-if="isNoted" id="bar-flex" class="bordered progress-bar">
@@ -34,7 +34,8 @@ export default {
 			links: stLinks,
 			isNoted : this.topic.note ? true : false,
 			noteWidth : this.topic.note *100 + '%',
-			noteBG : this.topic.style['background-color']
+			noteBG : this.topic.style['background-color'],
+			iconName: "eye"
 		}
 	},
 	computed: {
@@ -48,6 +49,10 @@ export default {
 			}
 			return false;
 		},
+		hasBgColor: function() {
+			if (this.topic.style['background-color'] == null) return false;
+			return true;
+		}
 	},
 	methods: {
 		InitLink: function() {
@@ -57,6 +62,7 @@ export default {
 			});
 			if (link_found) {
 				// TODO : ModeChange to highlight the link clicked
+				this.iconName = "eye-slash"
 			}
 		}
 	},

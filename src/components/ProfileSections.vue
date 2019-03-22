@@ -37,5 +37,10 @@ export default {
 }
 h3 {
 	border-bottom: 2px solid black;
+	cursor: pointer;
+}
+h3:hover {
+	text-shadow:1px 1px 0 #444;
+	background-color: #ccc;
 }
 </style>

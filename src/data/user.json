@@ -12,8 +12,8 @@
 		"aboutme" : "Développeur principalement javascript, lancé en freelance depuis un an. \nJ'aime me former aux nouveaux frameworks en étudiant leurs possibilités à travers des projets.",
 		"photo" : null,
 		"contacts" : [
-			{ "type" : "Github", "link" : "https://github.com/PapageiSquirrel" },
-			{ "type" : "Malt", "link" : "https://www.malt.fr/profile/maelrabasse" }
+			{ "type" : "Github", "link" : "https://github.com/PapageiSquirrel", "sublinks": ["LEV", "Gravity Fails", "ShapeShifter", "Colorize", "MOAD"] },
+			{ "type" : "Malt", "link" : "https://www.malt.fr/profile/maelrabasse", "sublinks": [] }
 		],
 		"profiles" : [
 			{
@@ -34,8 +34,8 @@
 								"date" : null,
 								"type": "NA",
 								"style" : {
-									"background-color": "#F98602",
-									"color": "#713E04"
+									"color": "#000",
+									"background-color": "#F98602"
 								},
 								"order" : 0,
 								"note" : 0.9,
@@ -51,6 +51,7 @@
 								"date" : null,
 								"type" : "NA",
 								"style" : {
+									"color": "#000",
 									"background-color": "#1B4FFA"
 								},
 								"order" : 1,
@@ -67,17 +68,36 @@
 								"date" : null,
 								"type" : "NA",
 								"style" : {
+									"color": "#000",
 									"background-color": "#139908"
 								},
 								"order" : 2,
-								"note" : 0.5,
+								"note" : 0.55,
 								"details" : []
+							},
+							{
+								"id" : 3,
+								"title" : "Divers",
+								"sub_title": null,
+								"date" : null,
+								"type" : "NA",
+								"style" : {
+									"color": "#000",
+									"background-color": "#999"
+								},
+								"order" : 3,
+								"note" : null,
+								"details" : [
+									{ "sub_title" : "VBA Avancé", "description": "(Access, Excel)", "learn_more": "" },
+									{ "sub_title" : "Anglais technique maîtrisé", "description": "", "learn_more": "" },
+									{ "sub_title" : "Répartition des tâches", "description": "(via github)", "learn_more": "Utilisation de GitKraken" }
+								]
 							}
 						]
 					},
 					{
 						"id": 1,
-						"title" : "Expériences Professionelles",
+						"title" : "Expériences Professionnelles",
 						"style" : {},
 						"order" : 0,
 						"topics" : [
@@ -88,7 +108,6 @@
 								"sidenote" : "depuis le 12/12/2017",
 								"type" : "NA",
 								"style" : {
-									"background-color": "#1a1a1a",
 									"color": "#FFF"
 								},
 								"order" : 0,
@@ -96,17 +115,16 @@
 									{ "sub_title" : "", "description": "Refonte d’un logiciel de gestion de patientèle pour un groupe médical polynésien.", "tags": ["Python", "Django", "JQuery"], 
 										"learn_more": "Gestion de rdv d'agenda et styles correspondants (google calendar), ajustements de la structure des données, corrections de bugs, ...", "link": "Python" },
 									{ "sub_title" : "", "description": "Développement d’un jeu mobile multiplateforme.", "tags": ["Javascript", "NodeJS", "CreateJS", "Android"], 
-										"learn_more": "Demo ...", "link": "Javascript" }
+										"learn_more": "Demo :", "refs":[], "link": "Javascript" }
 								]
 							},
 							{
 								"id" : 1,
 								"title" : "Phase de création d'Auto-Entreprise",
-								"sub_title": "",
+								"sub_title": null,
 								"sidenote" : "de 2014 à 2017",
 								"type" : "NA",
 								"style" : {
-									"background-color": "#333333",
 									"color": "#FFF"
 								},
 								"order" : 0,
@@ -118,7 +136,7 @@
 									{ "sub_title" : "Création d’un éditeur de niveau et d’un moteur de jeu.", "description": "", "tags": ["Javascript", "NodeJS", "CreateJS"], 
 										"learn_more": "See more on my github : ", "refs" : ["https:\/\/github.com\/PapageiSquirrel\/EditeurNiveau"], "link": "Javascript" },
 									{ "sub_title" : "Analyse d’un logiciel de tirage de ronde et développement d’un prototype.", "description": "", "tags": ["Python", "Django"], 
-										"learn_more": "...", "link": "Python" }
+										"learn_more": "", "link": "Python" }
 								]
 							},
 							{
@@ -128,34 +146,57 @@
 								"sidenote" : "de 2011 à 2014",
 								"type" : "NA",
 								"style" : {
-									"background-color": "#b3b3b3",
 									"color": "#000"
 								},
 								"order" : 0,
 								"details" : [
 									{ "sub_title" : "", "description": "Développement d’une application de gestion des augmentations de rémunération en autonomie", "tags": ["C#", "Silverlight", "SQL Server"], 
-										"learn_more": "...", "link": "C#" },
+										"learn_more": "", "link": "C#" },
 									{ "sub_title" : "", "description": "Aide à la fiabilisation de la cartographie applicative de l’entreprise et réalisation de l’outil de suivi des habilitations", "tags": ["VBA", "Access"],
-										"learn_more": "...", "link": "" },
+										"learn_more": "", "link": "" },
 									{ "sub_title" : "", "description": "Réalisation d’une IHM de gestion des primes", "tags": ["VBA", "Excel"],
-										"learn_more": "...", "link": "" }
+										"learn_more": "", "link": "" }
 								]
 							}
 						]
 					},
 					{
 						"id": 2,
-						"title" : "",
+						"title" : "Centre d'Intérêts",
 						"style" : {},
 						"order" : 0,
-						"topics" : []
-					},
-					{
-						"id": 3,
-						"title" : "",
-						"style" : {},
-						"order" : 0,
-						"topics" : []
+						"topics" : [
+							{
+								"id" : 0,
+								"title" : "Association de Go",
+								"sub_title": null,
+								"sidenote" : "",
+								"type" : "NA",
+								"style" : {
+									
+								},
+								"order" : 0,
+								"details" : [
+									{ "sub_title" : "", "description": "Trésorier et Pédagogue (ainsi que joueur actif de tournoi)", "tags": ["Trésorier","Compétiteur"], 
+										"learn_more": "", "refs":["https://ffg.jeudego.org/php/affichePersonne.php?id=6710"], "link": "" }
+								]
+							},
+							{
+								"id" : 1,
+								"title" : "Musique",
+								"sub_title": "Tromboniste",
+								"sidenote" : "",
+								"type" : "NA",
+								"style" : {
+
+								},
+								"order" : 1,
+								"details" : [
+									{ "sub_title" : "", "description": "Membre de l'harmonie de Lorient", "tags": ["Harmonie"], 
+										"learn_more": "", "link": "" }
+								]
+							}
+						]
 					}
 				]
 			},

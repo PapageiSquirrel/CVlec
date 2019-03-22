@@ -9,22 +9,26 @@
       </div>
 
       <nav id="nav-bar" ref="stickyBar" v-bind:class="{ sticky : isSticky }" class="w3-card-2 w3-bar w3-blue-gray">
-        <div class="w3-bar-item w3-button">Home</div>
-        <div class="w3-bar-item w3-button">About Me</div>
-        <div class="w3-bar-item w3-button w3-right">Contact Me</div>
+        <div class="w3-bar-item w3-button">Accueil</div>
+        <div class="w3-bar-item w3-button">Mon Portfolio</div>
+        <div class="w3-bar-item w3-button">Mes Intérêts</div>
+        <div class="w3-bar-item w3-button w3-right">Me Contacter</div>
       </nav>
 
       <div class="w3-row">
         <div id="nav-tab" class="w3-col m2 l2">
-          <nav-tab v-bind:tree="tree" v-bind:depth="0" />
+          <nav-tab v-bind:tree="tree" v-bind:depth="0" v-on:navigateTo="NavigateTo" />
         </div>
 
         <div id="main-view" class="w3-col m8 l9">
           <user-info v-bind:user="user" />
 
-          <user-profiles v-bind:profiles="user.profiles" v-on:select="SelectProfile" />
+          <!--<user-profiles v-bind:profiles="user.profiles" v-on:select="SelectProfile" />-->
 
-          <profile-overview v-if="selectedProfile != -1" v-bind:profile="user.profiles[selectedProfile]" v-on:selectSection="SelectSection" />
+          <profile-overview v-if="selectedProfile != -1" 
+            v-bind:profile="user.profiles[selectedProfile]" 
+            v-bind:selectedSection="selectedSection"
+            v-on:selectSection="SelectSection" />
         </div>
 
         <div id="nav-contact" class="w3-col m2 l1">
@@ -40,7 +44,7 @@
 
 <script>
 import UserInfo from './components/UserInfo.vue'
-import UserProfiles from './components/UserProfiles.vue'
+//import UserProfiles from './components/UserProfiles.vue'
 import ProfileOverview from './components/ProfileOverview.vue'
 import NavContact from './components/NavContact.vue'
 import NavTab from './components/NavTab.vue'
@@ -51,7 +55,7 @@ export default {
   name: 'app',
   components: {
     UserInfo,
-    UserProfiles,
+    //UserProfiles,
     ProfileOverview,
     NavContact,
     NavTab
@@ -69,10 +73,16 @@ export default {
   computed: {
     tree: function() {
       var profile = this.user.profiles[this.selectedProfile];
-      var t = { label: "Navigation", nodes: [{ label: profile.title, nodes: [] }] };
-      if (this.selectedSection != -1) {
-        var section = profile.sections[this.selectedSection];
-        t.nodes[0].nodes.push({ label: section.title, nodes: [] });
+      var t = { id: 0, label: "Navigation", nodes: [] };
+      for (var i=0;i<this.user.profiles.length;i++) {
+        var isActiveProfile = profile.id == this.user.profiles[i].id;
+        var b = { id: this.user.profiles[i].id, label: this.user.profiles[i].title, active: isActiveProfile, nodes: [] };
+        t.nodes.push(b);
+      }
+      for (var j=0;j<profile.sections.length;j++) {
+        var isActiveSection = this.selectedSection != -1 ? profile.sections[this.selectedSection].id == profile.sections[j].id : false;
+        var sb = { id: profile.sections[j].id, label: profile.sections[j].title, active: isActiveSection, nodes: [] };
+        t.nodes[this.selectedProfile].nodes.push(sb);
       }
       return t;
       /*
@@ -85,6 +95,7 @@ export default {
   },
   methods: {
     SelectProfile: function(val) {
+      this.selectedSection = -1;
       this.selectedProfile = val;
     },
     SelectSection: function(val) {
@@ -102,6 +113,13 @@ export default {
           this.isSticky = false;
         }
       } 
+    },
+    NavigateTo: function(val) {
+      if (val["profile"] != null) {
+        this.SelectProfile(val["profile"]);
+      } else if (val["section"] != null) {
+        this.SelectSection(val["section"]);
+      }
     }
   },
   created () {
