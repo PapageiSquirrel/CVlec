@@ -2,10 +2,7 @@
 	{
 		"name": "Javascript",
 		"style" : {
-			"margin": "1px 10px",
-			"padding": "2px 10px",
 			"border": "2px solid #F98602",
-			"border-radius": "25px",
 			"background-color": "#ffa366",
 			"color": "#000"
 		},
@@ -18,10 +15,7 @@
 	{
 		"name": "Python",
 		"style" : {
-			"margin": "1px 10px",
-			"padding": "2px 10px",
 			"border": "2px solid #139908",
-			"border-radius": "25px",
 			"background-color": "#00b33c",
 			"color": "#000"
 		},
@@ -34,10 +28,7 @@
 	{
 		"name": "C#",
 		"style" : {
-			"margin": "1px 10px",
-			"padding": "2px 10px",
 			"border": "2px solid #1B4FFA",
-			"border-radius": "25px",
 			"background-color": "#005ce6",
 			"color": "#000"
 		},

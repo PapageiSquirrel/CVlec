@@ -9,7 +9,7 @@
 		"fixe" : null,
 		"tel" : "06.47.86.61.94",
 		"email" : "mael.rabasse@hotmail.fr",
-		"aboutme" : "Développeur principalement javascript, lancé en freelance depuis un an. \nJ'aime me former aux nouveaux frameworks en étudiant leurs possibilités à travers des projets.",
+		"aboutme" : "Développeur principalement javascript, lancé en freelance depuis un an. \nJ'aime me former aux nouveaux frameworks en étudiant leurs possibilités à travers des projets. \nMa formation initiale de gestionnaire de données m'a permis d'approfondir toutes les étapes du développement Web.",
 		"photo" : null,
 		"contacts" : [
 			{ "type" : "Github", "link" : "https://github.com/PapageiSquirrel", "sublinks": ["LEV", "Gravity Fails", "ShapeShifter", "Colorize", "MOAD"] },
@@ -99,7 +99,7 @@
 						"id": 1,
 						"title" : "Expériences Professionnelles",
 						"style" : {},
-						"order" : 0,
+						"order" : 2,
 						"topics" : [
 							{
 								"id" : 0,
@@ -164,7 +164,7 @@
 						"id": 2,
 						"title" : "Centre d'Intérêts",
 						"style" : {},
-						"order" : 0,
+						"order" : 1,
 						"topics" : [
 							{
 								"id" : 0,

@@ -1,11 +1,13 @@
 <template>
 	<div id="profileOverview" class="w3-container">
 		<h2><span class="bgi">{{profile.title}}</span></h2>
-		<div id="overview">
-			<div v-for="item in profile.sections" v-bind:key="item.id">
-				<transition name="enlarge">
-					<profile-sections v-if="isShown(item.id)" class="trans-section" v-bind:section="item" v-on:selectSection="SelectSection" />
-				</transition>
+		<div id="overview" class="w3-row">
+			<div v-for="n in nbColumn" v-bind:key="n" class="w3-col" v-bind:style="{ width: 100/nbColumn + '%' }">
+				<div v-for="item in sectionsColumnSliced(n)" v-bind:key="item.id">
+					<transition name="enlarge">
+						<profile-sections v-if="isShown(item.id)" class="trans-section" v-bind:section="item" v-on:selectSection="SelectSection" v-bind:selectedLink="selectedLink" v-on:selectLink="SelectLink" />
+					</transition>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -21,11 +23,28 @@ export default {
 	},
 	props: {
 		profile : Object,
-		selectedSection : Number
+		selectedSection : Number,
+		selectedLink : String
+	},
+	computed: {
+		sectionsSortedByOrder: function() {
+			return this.profile.sections.slice().sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0)); 
+		},
+		nbColumn: function() {
+			if (this.selectedSection != -1) return 1;
+			return Math.round(this.profile.sections.length/2);
+		}
 	},
 	methods: {
 		SelectSection: function(val) {
 			this.$emit("selectSection", val);
+		},
+		SelectLink: function(val) {
+			this.$emit("selectLink", val);
+		},
+		sectionsColumnSliced: function(n) {
+			if (this.selectedSection != -1) return this.profile.sections.slice(this.selectedSection);
+			return this.sectionsSortedByOrder.slice(2*(n-1), 2*n);
 		},
 		isShown: function(sid) {
 			if (this.selectedSection != -1 && this.selectedSection != sid) return false;
@@ -36,10 +55,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.grid-container {
-	display: grid;
-	grid-template-columns: auto auto;
-}
 .trans-section {
 	width: 100%;
 	overflow:hidden;
@@ -56,7 +71,7 @@ export default {
 }
 
 #overview {
-	.grid-container();
+
 }
 
 h2 {

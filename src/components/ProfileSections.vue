@@ -2,7 +2,7 @@
 	<div id="section">
 		<h3 v-on:click="selectSection">{{section.title}}</h3>
 		<div v-for="item in topicsSortedByOrder" v-bind:key="item.id">
-			<section-topics v-bind:sid="section.id" v-bind:topic="item" />
+			<section-topics v-bind:sid="section.id" v-bind:topic="item" v-bind:selectedLink="selectedLink" v-on:selectLink="SelectLink" />
 		</div>
 	</div>
 </template>
@@ -16,7 +16,8 @@ export default {
 		SectionTopics
 	},
 	props: {
-		section: Object
+		section: Object,
+		selectedLink: String
 	},
 	computed: {
 		topicsSortedByOrder: function() {
@@ -26,6 +27,9 @@ export default {
 	methods: {
 		selectSection: function() {
 			this.$emit("selectSection", this.section.id);
+		},
+		SelectLink: function(val) {
+			this.$emit("selectLink", val);
 		}
 	}
 }

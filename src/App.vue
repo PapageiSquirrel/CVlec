@@ -15,24 +15,29 @@
         <div class="w3-bar-item w3-button w3-right">Me Contacter</div>
       </nav>
 
-      <div class="w3-row">
-        <div id="nav-tab" class="w3-col m2 l2">
-          <nav-tab v-bind:tree="tree" v-bind:depth="0" v-on:navigateTo="NavigateTo" />
+      <div class="content">
+        <div class="w3-sidebar w3-collapse" v-bind:style="{ 'margin-top': sidebarMargin + 'px' }" style="width:210px;">
+          <nav-tab class="nav-tab" v-bind:tree="tree" v-bind:depth="0" v-on:navigateTo="NavigateTo" style="width:200px;" /><br>
+          <nav-link class="nav-tab" v-bind:selectedLink="selectedLink" v-on:selectLink="SelectLink" style="width:200px; margin-top:100px;" />
         </div>
 
-        <div id="main-view" class="w3-col m8 l9">
-          <user-info v-bind:user="user" />
-
-          <!--<user-profiles v-bind:profiles="user.profiles" v-on:select="SelectProfile" />-->
-
-          <profile-overview v-if="selectedProfile != -1" 
-            v-bind:profile="user.profiles[selectedProfile]" 
-            v-bind:selectedSection="selectedSection"
-            v-on:selectSection="SelectSection" />
+        <div id="nav-contact" class="w3-sidebar w3-collapse" v-bind:style="{ 'margin-top': sidebarMargin + 'px' }" style="width:150px;right:0;">
+          <nav-contact class="nav-tab" v-bind:contacts="user.contacts" />
         </div>
 
-        <div id="nav-contact" class="w3-col m2 l1">
-          <nav-contact v-bind:contacts="user.contacts" />
+        <div class="w3-main w3-row" style="margin-left: 200px;margin-right: 150px;">
+          <div id="main-view">
+            <user-info v-bind:user="user" />
+
+            <!--<user-profiles v-bind:profiles="user.profiles" v-on:select="SelectProfile" />-->
+
+            <profile-overview v-if="selectedProfile != -1" 
+              v-bind:profile="user.profiles[selectedProfile]" 
+              v-bind:selectedSection="selectedSection"
+              v-on:selectSection="SelectSection" 
+              v-bind:selectedLink="selectedLink" 
+              v-on:selectLink="SelectLink" />
+          </div>
         </div>
       </div>
     </div>
@@ -48,6 +53,7 @@ import UserInfo from './components/UserInfo.vue'
 import ProfileOverview from './components/ProfileOverview.vue'
 import NavContact from './components/NavContact.vue'
 import NavTab from './components/NavTab.vue'
+import NavLink from './components/NavLink.vue'
 
 import Data from './data/user.json'
 
@@ -58,11 +64,13 @@ export default {
     //UserProfiles,
     ProfileOverview,
     NavContact,
-    NavTab
+    NavTab,
+    NavLink
   },
   data: function() {
     return {
       barOffset: null,
+      sidebarMargin: 0,
       isSticky: false,
       selectedProfile : 0,
       selectedSection: -1,
@@ -91,7 +99,7 @@ export default {
         t.nodes.push({ label: section.title, nodes: [] });
       }
       */
-    }
+    },
   },
   methods: {
     SelectProfile: function(val) {
@@ -101,6 +109,9 @@ export default {
     SelectSection: function(val) {
       this.selectedSection = val;
     },
+    SelectLink: function(val) {
+      this.selectedLink = val;
+    },
     updateSticky: function() {
       if (this.barOffset == null && this.$refs.stickyBar) {
         this.barOffset = this.$refs.stickyBar.offsetTop;
@@ -108,8 +119,10 @@ export default {
 
       if (this.barOffset != null) {
         if (window.pageYOffset >= this.barOffset) {
+          this.sidebarMargin = 0;
           this.isSticky = true;
         } else {
+          this.sidebarMargin = -1* window.pageYOffset;
           this.isSticky = false;
         }
       } 
@@ -146,8 +159,12 @@ export default {
   z-index: 9999;
   overflow: hidden;
 }
-#nav-tab {
+.nav-tab {
+  /*
+  border-top: solid 4px black;
   border-right: solid 4px black;
+  border-bottom: solid 4px black;
+  */
 }
 #main-view {
   overflow-y: auto;
@@ -163,10 +180,11 @@ export default {
   top: 0;
   width: 100%;
 }
-
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
-  padding-top: 60px;
+  margin-top: 38px;
+}
+.content-margin {
+
 }
 
 footer {

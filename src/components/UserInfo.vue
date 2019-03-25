@@ -1,9 +1,9 @@
 <template>
   <div id="userinfo" class="w3-container w3-row w3-card-4">
-      <div class="w3-col m3 l2">
+      <div class="w3-col l2 m3 s4">
         <img src='../assets/photo.webp' />
       </div>
-      <div class="w3-col m5 l5 w3-left-align">
+      <div class="w3-col l4 m9 s8 w3-left-align">
         <div class="w3-panel">
           <h1 class="maintitle" id="user.id">{{user.realname}}</h1>
           <h5><span id="identite">
@@ -14,9 +14,9 @@
           </span></h5>
         </div>
       </div>
-      <div class="w3-col m4 l5">
-        <h2 class="w3-left-align" style="margin-left:20px">Profile</h2>
-        <p class="w3-sand w3-leftbar w3-panel w3-opacity w3-left-align">
+      <div class="w3-col l5 m12 s12">
+        <h2 class="w3-left-align" style="margin-left:20px;">Profile</h2>
+        <p class="w3-sand w3-leftbar w3-panel w3-opacity w3-left-align" style="max-height:10em;overflow:hidden;text-overflow:ellipsis;">
           <span style="font-size:25px;line-height:0.6em;opacity:0.8">&#10077;</span> 
           <i style="margin-top: -5px;margin-bottom: -5px">{{user.aboutme}}</i> 
           <span style="font-size:25px;line-height:0.6em;opacity:0.8">&#10078;</span>
@@ -54,7 +54,6 @@ a {
   color: #42b983;
 }
 img {
-  height: 100%;
   width: 100%;
 }
 div {

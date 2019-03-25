@@ -2,7 +2,7 @@
 	<div id="topic" v-bind:style="topic.style" v-bind:class="{ 'w3-blue-gray': !hasBgColor }">
 		<div>
 			<header class="w3-container" >
-				<h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" v-bind:icon="iconName" /><span style="color:#FFF;"> {{topic.title}}</span></h4>
+				<h4><font-awesome-icon v-if="isLinked" v-on:click="InitLink" v-bind:icon="iconName" style="cursor: pointer;" /><span style="color:#FFF;"> {{topic.title}}</span></h4>
 				<h6 v-if="topic.sub_title">{{topic.sub_title}}</h6>
 			</header>
 			<div v-if="isNoted" id="bar-flex" class="bordered progress-bar">
@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<ol v-if="topic.details.length > 0">
-			<topic-details v-for="(item, index) in topic.details" v-bind:detail="item" v-bind:key="index" />
+			<topic-details v-for="(item, index) in topic.details" v-bind:detail="item" v-bind:key="index" v-bind:selectedLink="selectedLink" v-bind:parentLink="selectedLink == topic.title" />
 		</ol>
 	</div>
 </template>
@@ -27,15 +27,15 @@ export default {
 	},
 	props: {
 		sid : Number,
-		topic : Object
+		topic : Object,
+		selectedLink: String
 	},
 	data: function() {
 		return {
 			links: stLinks,
 			isNoted : this.topic.note ? true : false,
 			noteWidth : this.topic.note *100 + '%',
-			noteBG : this.topic.style['background-color'],
-			iconName: "eye"
+			noteBG : this.topic.style['background-color']
 		}
 	},
 	computed: {
@@ -52,6 +52,15 @@ export default {
 		hasBgColor: function() {
 			if (this.topic.style['background-color'] == null) return false;
 			return true;
+		},
+		iconName: function() {
+			if (this.selectedLink == null) return 'eye';
+			var branch = { section: this.sid, topic: this.topic.id };
+			var link_found = this.links.find(function(l) {
+				return l.init.section == branch.section && l.init.topic == branch.topic;
+			});
+			if (link_found && this.selectedLink == link_found.name) return 'eye';
+			else return 'eye-slash';
 		}
 	},
 	methods: {
@@ -61,8 +70,7 @@ export default {
 				return l.init.section == branch.section && l.init.topic == branch.topic;
 			});
 			if (link_found) {
-				// TODO : ModeChange to highlight the link clicked
-				this.iconName = "eye-slash"
+				this.$emit("selectLink", link_found.name);
 			}
 		}
 	},
