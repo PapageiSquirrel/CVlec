@@ -2,7 +2,7 @@
   <div id="navContact">
     <ol class="w3-ul w3-border w3-card">
       <li class="w3-bar-item w3-padding-large w3-green">
-        <span><font-awesome-icon icon="link" /> Liens</span>
+        <span><font-awesome-icon icon="link" /> {{ "nav.liens" | trad}}</span>
       </li>
       <div v-for="(contact, c_index) in contacts" v-bind:key="contact.type" v-on:mouseleave="onLinkMouseLeave(c_index)">
         <li class="w3-block w3-hover-blue" v-on:mouseover="onLinkMouseOver(c_index)">
@@ -11,7 +11,9 @@
         <transition name="slide">
           <div v-if="slides[c_index] == true" class="w3-border trans-slide">
             <ol class="w3-ul">
-              <li v-for="(sl,index) in contact.sublinks" v-bind:key="index" class="w3-block w3-gray w3-hover-blue"><a href="#">{{sl}}</a></li>
+              <li v-for="(sl,index) in contact.sublinks" v-bind:key="index" class="w3-block w3-gray w3-hover-blue">
+                <a v-bind:href="contact.link + '/' + sl">{{sl}}</a>
+              </li>
             </ol>
           </div>
         </transition>

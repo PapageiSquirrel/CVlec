@@ -1,6 +1,6 @@
 {
   "name": "cvlec",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,6 +11,11 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/vue-fontawesome": "^0.1.5",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "country-flag-icons": "^1.2.5",
+    "express": "^4.16.4",
+    "nodemailer": "^6.1.0",
     "vue": "^2.6.6"
   },
   "devDependencies": {

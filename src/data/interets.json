@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Jeu de Go",
+		"description": "",
+		"links": [
+			{"label": "FFG :", "value": "https://ffg.jeudego.org/php/affichePersonne.php?id=6710"},
+			{"label": "Facebook :", "value": "https://www.facebook.com/goanoriant/"}
+		],
+		"tags": ["Loisir", "Association", "Trésorier", "Pédagogie", "Compétitions"],
+		"image": "",
+		"details": [
+			"Joueur de go depuis l'âge de 14 ans, le go est une discipline qui fait partie intégrante de ma personne.",
+			"Actif au niveau des compétitions, j'aime également partager mes connaissances et ma passion avec ceux qui débutent sur ce jeu méconnu en France"
+		],
+		"order": 0
+	},
+	{
+		"name": "Ecriture",
+		"description": "Et aussi lecture",
+		"links": [
+			{"label": "Epopée Epistolaire", "value": "https://epoepi.wordpress.com/"}
+		],
+		"tags": ["Loisir", "Blog"],
+		"image": "",
+		"details": [
+			"La lecture et l'écriture sont des passions ancrées en moi depuis l'adolescence.",
+			"Mon blog n'est que regroupement d'articles que j'écris pour moi-même à mes heures perdues.",
+			"Je travaille également sur des histoires plus ambitieuses, qui pour le moment sont réservées à mes proches."
+		],
+		"order": 1
+	}
+]

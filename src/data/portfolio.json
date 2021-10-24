@@ -1,0 +1,44 @@
+[
+	{
+		"name": "LEV",
+		"progress": "C",
+		"description": "Projet de bibliothèque communautaire en ligne",
+		"links": [{"label": "Github :", "value": "https://github.com/PapageiSquirrel/LEV"}],
+		"tags": ["Javascript", "AngularJS", "NodeJS", "Express", "MongoDB", "postgreSQL", "Bootstrap"],
+		"image": "",
+		"details": [
+			"L'objectif de ce site est d'offrir une mine d'information la plus exhaustive possible concernant les éditions de livres (langue, réédition, ...), Permettant ainsi aux utilisateurs de renseigner leur bibliothèque, wishlist, prêts, etc.",
+			"Ce serait également un endroit de partage d'avis (critique, écrit personnel, ...) et de livres.",
+			"Le projet est actuellement en cours de refonte, puisque l'architecture de base est réalisé avec la première version d'Angular, et sera disponible bientôt."
+		],
+		"order": 0
+	},
+	{
+		"name": "ShapeShifter",
+		"progress": "F",
+		"description": "Editeur de niveau et moteur physique pour un jeu de plateformes",
+		"links": [{"label": "Github :", "value": "https://github.com/PapageiSquirrel/EditeurNiveau"}, {"label": "Démo :", "value": "http://demos.acclarare.net/ShapeShifter"}],
+		"tags": ["Javascript", "CreateJS", "NodeJS", "Express", "Socket.io"],
+		"image": "assets/logo_fin.png",
+		"details": [
+			"Le projet se divise en deux parties : un moteur de jeu de plateforme et d'exploration en 2D, ainsi qu'un éditeur de niveau flexible adapté au projet.",
+			"L'éditeur n'est pas encore disponible en ligne, bien que fonctionnel, pour des raisons d'érgonomie et de visuel à travailler.",
+			"Une démo de ce qu'il est possible de construire à partir de l'éditeur est disponible dans les liens ci-dessous, lisible à partir d'un simple fichier json.",
+			"L'utilisation de sprites a été limité au maximum dans cette démo, afin de garder un esprit minimaliste."
+		],
+		"order": 1
+	},
+	{
+		"name": "Colorize",
+		"progress": "C",
+		"description": "",
+		"links": [{"label": "Github :", "value": "https://github.com/PapageiSquirrel/Colorize"}],
+		"tags": ["Javascript", "Phaser.io", "NodeJS", "ExpressJS"],
+		"image": "",
+		"details": [
+			"Le projet consiste en un jeu de plateforme et d'énigmes développé avec le framework Phaser.",
+			"Une démo est en cours de réalisation."
+		],
+		"order": 2
+	}
+]

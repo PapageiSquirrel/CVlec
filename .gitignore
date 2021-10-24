@@ -1,3 +1,9 @@
+# Private files
+public/CV Mael 2019.pdf
+
+# Complied directory
+dist
+
 # Logs
 logs
 *.log

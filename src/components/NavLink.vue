@@ -1,7 +1,7 @@
 <template>
   <nav id="navLink" class="w3-bar-block w3-collapse w3-white w3-hover-border-gray w3-animate-left">
     <div v-on:click="SelectLink()">
-      <b><a class="w3-bar-item w3-button w3-padding-large w3-white" style="border:solid 2px;">Tout Montrer<font-awesome-icon v-bind:icon="iconName()" class="w3-right" /></a></b>
+      <b><a class="w3-bar-item w3-button w3-padding-large w3-white" style="border:solid 2px;">{{"nav.montrer" | trad}}<font-awesome-icon v-bind:icon="iconName()" class="w3-right" /></a></b>
     </div>
     <div v-for="link in links" v-bind:key="link.name" v-on:click="SelectLink(link.name)">
       <a class="w3-bar-item w3-button w3-padding-large" v-bind:style="link.style">{{link.name}}<font-awesome-icon v-bind:icon="iconName(link.name)" class="w3-right" /></a>

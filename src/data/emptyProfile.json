@@ -1,0 +1,36 @@
+{
+	"id" : 0,
+	"title" : "user.empty.profile",
+	"style": {},
+	"mode" : "SPLIT",
+	"sections" : [
+		{
+			"id": 0,
+			"title" : "user.default.section.une",
+			"style" : {},
+			"order" : 0,
+			"topics" : []
+		},
+		{
+			"id": 1,
+			"title" : "user.default.section.deux",
+			"style" : {},
+			"order" : 1,
+			"topics" : []
+		},
+		{
+			"id": 2,
+			"title" : "user.default.section.trois",
+			"style" : {},
+			"order" : 2,
+			"topics" : []
+		},
+		{
+			"id": 3,
+			"title" : "user.default.section.quatre",
+			"style" : {},
+			"order" : 3,
+			"topics" : []
+		}
+	]
+}

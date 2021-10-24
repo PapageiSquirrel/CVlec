@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div >
+    <div>
       <div id="banniere-titre" class="w3-left" style="margin-left:30px;">
         <h1 class="w3-hide-small w3-wide">
           <b class="w3-text-blue-gray" style="font-size:1.5em;text-shadow:1px 1px 0 #444;">CV</b>
@@ -8,109 +8,95 @@
         </h1>
       </div>
 
+      <div id="banniere-lang" class="w3-right">
+        <button class="w3-button flag:FR" v-on:click="updateLang('fr')"></button>
+        <button class="w3-button flag:GB" v-on:click="updateLang('gb')"></button>
+        <button class="w3-button flag:ES" v-on:click="updateLang('es')"></button>
+        <button class="w3-button flag:RU" v-on:click="updateLang('ru')"></button>
+      </div>
+
       <nav id="nav-bar" ref="stickyBar" v-bind:class="{ sticky : isSticky }" class="w3-card-2 w3-bar w3-blue-gray">
-        <div class="w3-bar-item w3-button">Accueil</div>
-        <div class="w3-bar-item w3-button">Mon Portfolio</div>
-        <div class="w3-bar-item w3-button">Mes Intérêts</div>
-        <div class="w3-bar-item w3-button w3-right">Me Contacter</div>
+        <button v-for="view in views" class="w3-bar-item w3-button" 
+          v-bind:key="view.name"
+          v-bind:class="{ active: currentView === view.name }"
+          v-on:click="currentView = view.name">{{view.label | trad}}</button>
+        <button class="w3-bar-item w3-button w3-right" v-on:click="showContact = !showContact">{{ "menu.contact" | trad}}</button>
       </nav>
 
       <div class="content">
-        <div class="w3-sidebar w3-collapse" v-bind:style="{ 'margin-top': sidebarMargin + 'px' }" style="width:210px;">
-          <nav-tab class="nav-tab" v-bind:tree="tree" v-bind:depth="0" v-on:navigateTo="NavigateTo" style="width:200px;" /><br>
-          <nav-link class="nav-tab" v-bind:selectedLink="selectedLink" v-on:selectLink="SelectLink" style="width:200px; margin-top:100px;" />
-        </div>
-
-        <div id="nav-contact" class="w3-sidebar w3-collapse" v-bind:style="{ 'margin-top': sidebarMargin + 'px' }" style="width:150px;right:0;">
-          <nav-contact class="nav-tab" v-bind:contacts="user.contacts" />
-        </div>
-
-        <div class="w3-main w3-row" style="margin-left: 200px;margin-right: 150px;">
-          <div id="main-view">
-            <user-info v-bind:user="user" />
-
-            <!--<user-profiles v-bind:profiles="user.profiles" v-on:select="SelectProfile" />-->
-
-            <profile-overview v-if="selectedProfile != -1" 
-              v-bind:profile="user.profiles[selectedProfile]" 
-              v-bind:selectedSection="selectedSection"
-              v-on:selectSection="SelectSection" 
-              v-bind:selectedLink="selectedLink" 
-              v-on:selectLink="SelectLink" />
-          </div>
-        </div>
+        <modal-contact class="modal" v-if="showContact" v-bind:topmargin="sidebarMargin" v-on:close="showContact = false" />
+        
+        <component v-bind:is="currentViewComponent" v-bind="currentViewProperties" v-on="currentViewEvents"></component>
       </div>
     </div>
+
     <footer>
-      <span>- copyright 2019 Maël Rabasse -</span>
+      <sticky-footer :enableToolbox="currentView === 'Editeur'" :selectedElement="selectedElement" @addElement="onAddElement" />
     </footer>
   </div>
 </template>
 
 <script>
-import UserInfo from './components/UserInfo.vue'
-//import UserProfiles from './components/UserProfiles.vue'
-import ProfileOverview from './components/ProfileOverview.vue'
-import NavContact from './components/NavContact.vue'
-import NavTab from './components/NavTab.vue'
-import NavLink from './components/NavLink.vue'
+import Vue from 'vue';
+import { langApi } from './langApi.js'
 
-import Data from './data/user.json'
+import CvAccueil from './components/global/CvAccueil.vue'
+import CvEditeur from './components/global/CvEditeur.vue'
+import CvPortfolio from './components/global/CvPortfolio.vue'
+import CvInterets from './components/global/CvInterets.vue'
+
+import ModalContact from './components/modal/ModalContact.vue'
+import StickyFooter from './components/StickyFooter.vue';
 
 export default {
   name: 'app',
   components: {
-    UserInfo,
-    //UserProfiles,
-    ProfileOverview,
-    NavContact,
-    NavTab,
-    NavLink
+    CvAccueil,
+    CvEditeur,
+    CvPortfolio,
+    CvInterets,
+    ModalContact,
+    StickyFooter
   },
   data: function() {
     return {
+      currentView: 'Accueil',
+      views: [
+        {name: 'Accueil', label: 'menu.accueil'}, 
+        {name: 'Editeur', label: 'menu.editeur'}, 
+        {name: 'Portfolio', label: 'menu.portfolio'}, 
+        {name: 'Interets', label: 'menu.interets'}
+      ],
+      events: new Vue(),
+      selectedElement: '',
+      isSticky: false,
       barOffset: null,
       sidebarMargin: 0,
-      isSticky: false,
-      selectedProfile : 0,
-      selectedSection: -1,
-      selectedLink : null,
-      user : Data.Me
+      showContact: false
     }
   },
   computed: {
-    tree: function() {
-      var profile = this.user.profiles[this.selectedProfile];
-      var t = { id: 0, label: "Navigation", nodes: [] };
-      for (var i=0;i<this.user.profiles.length;i++) {
-        var isActiveProfile = profile.id == this.user.profiles[i].id;
-        var b = { id: this.user.profiles[i].id, label: this.user.profiles[i].title, active: isActiveProfile, nodes: [] };
-        t.nodes.push(b);
-      }
-      for (var j=0;j<profile.sections.length;j++) {
-        var isActiveSection = this.selectedSection != -1 ? profile.sections[this.selectedSection].id == profile.sections[j].id : false;
-        var sb = { id: profile.sections[j].id, label: profile.sections[j].title, active: isActiveSection, nodes: [] };
-        t.nodes[this.selectedProfile].nodes.push(sb);
-      }
-      return t;
-      /*
-      if (selectedLink != null) {
-        var link = profile.sections[selectedSection];
-        t.nodes.push({ label: section.title, nodes: [] });
-      }
-      */
+    currentViewComponent: function() {
+      return 'Cv' + this.currentView;
     },
+    currentViewProperties: function() {
+      if (this.currentViewComponent === 'CvAccueil') {
+        return { sidebarMargin: this.sidebarMargin };
+      } else if (this.currentViewComponent === 'CvEditeur') {
+        return { events: this.events };
+      }
+      return {};
+    },
+    currentViewEvents: function() {
+      if (this.currentViewComponent === 'CvEditeur') {
+        return { selectElement: this.onSelectElement };
+      }
+      return {};
+    }
   },
   methods: {
-    SelectProfile: function(val) {
-      this.selectedSection = -1;
-      this.selectedProfile = val;
-    },
-    SelectSection: function(val) {
-      this.selectedSection = val;
-    },
-    SelectLink: function(val) {
-      this.selectedLink = val;
+    updateLang: function(code) {
+      return langApi.setCountryCode(code);
     },
     updateSticky: function() {
       if (this.barOffset == null && this.$refs.stickyBar) {
@@ -127,12 +113,12 @@ export default {
         }
       } 
     },
-    NavigateTo: function(val) {
-      if (val["profile"] != null) {
-        this.SelectProfile(val["profile"]);
-      } else if (val["section"] != null) {
-        this.SelectSection(val["section"]);
-      }
+    onAddElement: function(type) {
+      this.events.$emit("addElement", type);
+    },
+    onSelectElement: function(args) {
+      this.selectedElement = args.type;
+      this.events.$emit("selectElement", args);
     }
   },
   created () {
@@ -155,23 +141,18 @@ export default {
 #banniere-titre {
   background-color:#ffffff;
 }
+#banniere-lang {
+  margin: 30px;
+}
 #nav-bar {
-  z-index: 9999;
+  z-index: 9998;
   overflow: hidden;
 }
-.nav-tab {
-  /*
-  border-top: solid 4px black;
-  border-right: solid 4px black;
-  border-bottom: solid 4px black;
-  */
-}
-#main-view {
-  overflow-y: auto;
-  padding-bottom: 30px;
-}
-#nav-contact {
-  
+
+/* Set flag icon height to 24px. */
+[class*=' flag:'], [class^='flag:'] {
+  font-size: 24px;
+  margin-right: 8px;
 }
 
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
@@ -180,28 +161,31 @@ export default {
   top: 0;
   width: 100%;
 }
+.content {
+  z-index: 0;
+}
 .sticky + .content {
   margin-top: 38px;
 }
-.content-margin {
 
+.active {
+  background: #999;
 }
 
 footer {
   position: fixed;
   bottom: 0;
   background-color: #FFF;
-  height: 30px;
   width: 100%;
   border-top: solid 2px black;
   padding-top: 4px;
 }
 
 .transform(@transform) {
-    -webkit-transform: @transform;
-    -moz-transform: @transform;
-    -ms-transform: @transform;
-    -o-transform: @transform;
-    transform: @transform; 
+  -webkit-transform: @transform;
+  -moz-transform: @transform;
+  -ms-transform: @transform;
+  -o-transform: @transform;
+  transform: @transform; 
 }
 </style>

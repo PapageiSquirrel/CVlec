@@ -1,6 +1,6 @@
 <template>
   <nav id="navTab" class="w3-bar-block w3-collapse w3-white w3-hover-border-gray w3-animate-left">
-    <span v-if="tree.label == 'Navigation'" class="w3-bar-item w3-padding-large w3-green"><font-awesome-icon icon="map" /> {{tree.label}}</span>
+    <span v-if="tree.label == 'nav.navigation'" class="w3-bar-item w3-padding-large w3-green"><font-awesome-icon icon="map" /> {{tree.label | trad}}</span>
     <a v-else href="#" v-on:click="NavigateTo(tree.id)" v-bind:class="{ 'w3-green' : tree.active, 'w3-black': !tree.active }" class="w3-bar-item w3-button w3-padding-large" v-bind:style="{ 'margin-left': depth*3 + '%', width: 100-depth*3 + '%', 'opacity': 1-(depth-1)/10}">
       <span><font-awesome-icon icon="long-arrow-alt-right" /> {{tree.label}}</span>
     </a>

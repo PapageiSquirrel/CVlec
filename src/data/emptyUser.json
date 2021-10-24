@@ -1,0 +1,13 @@
+{
+	"id" : 0,
+	"nickname" : "",
+	"realname" : "user.empty.realname",
+	"age" : "user.empty.age",
+	"adresse" : "user.empty.adresse",
+	"fixe" : "user.empty.fixe",
+	"tel" : "user.empty.tel",
+	"email" : "user.empty.email",
+	"aboutme" : "user.empty.aboutme",
+	"photo" : "",
+	"contacts" : []
+}
